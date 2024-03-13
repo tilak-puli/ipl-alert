@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 
 const main = async (city =  "chennai") => {
+    let value = 0;
     const res = await fetch("https://insider.in/all-events-in-"+city, {
         "headers": {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -31,17 +32,20 @@ const main = async (city =  "chennai") => {
         const eventDescription = eventCard.attribs['aria-label'];
         count++;
 
-        if (eventDescription?.match(/csk|rcb|ipl/i)) {
-            console.log("Event tickdts released in  Paytm Insider");
-            return 1;
+        if (eventDescription?.match(/csk|rcb/i) &&  !eventDescription?.match(/live screening/i)) {
+            console.log("Event tickets released in Paytm Insider");
+            console.log(eventDescription);
+            value  = 1;
         }
     });
+    
+    if(value) {return 1}
 
     if (count === 0) {
-        console.log("Script  might need update for  Paytm Insider")
+        console.log("\x1b[31m", "Script  might need update for  Paytm Insider")
         return 0;
     } else {
-        console.log("Event tickdts not released in  Paytm Insider");
+        console.log("Event tickets not released in Paytm Insider");
         return 0;
     }
 }

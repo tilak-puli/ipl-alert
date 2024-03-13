@@ -1,26 +1,30 @@
 const paytmInsiderChecker = require("./paytmInsiderCheck");
+const rcbCheck = require("./rcbVsKkrStands");
 const notifier = require('node-notifier');
 var player = require('play-sound')(opts = {})
 const token = "7106716544:AAFwcwxZAYTO2iN8ldzn6AeVF5689cdrqK4";
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, { polling: false, });
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 const main = async () => {
     while (true) {
         console.log(new Date().toLocaleString());
+        console.log("Checking  for rcb tickets")
+        const rcb = await rcbCheck();
         console.log("Checking  for chennai in paytm insider")
         const chennaiTickets = await paytmInsiderChecker("chennai");
         console.log("Checking  for bengalure in paytm insider")
-        const bangaloreTickets = await paytmInsiderChecker("bangalore");
+        const bangaloreTickets = await paytmInsiderChecker("bengaluru");
+        
 
-        if (chennaiTickets || bangaloreTickets) {
-            console.log("Akert Tickets are released");
-            await notiify("Tickets released in paytm in " + (true ? "chennai": "bengalure"));
+        if (rcb || chennaiTickets || bangaloreTickets) {
+            console.log("\x1b[32m", "Alert Tickets are released");
+            await notiify("Tickets released in paytm in " + (rcb ? "rcb": chennaiTickets ? "chennai" : "bengalure"));
         } else {
-            console.log("Tickets not released. sleeping");
+            console.log("\x1b[35m", "Tickets not released. sleeping");
 
-            await delay(5 * 60 * 1000);
+            await delay(1 * 60 * 1000);
         }
     }
 }
