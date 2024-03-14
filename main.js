@@ -1,5 +1,6 @@
 const paytmInsiderChecker = require("./paytmInsiderCheck");
 const rcbCheck = require("./rcbVsKkrStands");
+const cskCheck = require("./cskCheck");
 const notifier = require('node-notifier');
 var player = require('play-sound')(opts = {})
 const token = "7106716544:AAFwcwxZAYTO2iN8ldzn6AeVF5689cdrqK4";
@@ -13,7 +14,8 @@ const main = async () => {
         console.log("Checking  for rcb tickets")
         const rcb = await rcbCheck();
         console.log("Checking  for chennai in paytm insider")
-        const chennaiTickets = await paytmInsiderChecker("chennai");
+        let chennaiTickets = await paytmInsiderChecker("chennai");
+        chennaiTickets = chennaiTickets || (await cskCheck() === 1);
         console.log("Checking  for bengalure in paytm insider")
         const bangaloreTickets = await paytmInsiderChecker("bengaluru");
         

@@ -29,8 +29,38 @@ const main = async () => {
   });
 
   console.log(openSeats.map(o => ({id: o.i_Id, row: o.row,  seat_No: o.seat_No})));
+
+  let rowMessage = [];
+  let seatMessage = [];
+  let currentRow = "";
+  let lastSeat  = ""
+
+  openSeats.forEach(element => {
+    if(element.row === currentRow && element.seat_No === lastSeat + 1) {
+      rowMessage.push(element.row + '-' + element.seat_No);
+      seatMessage.push(element.i_Id);
+      lastSeat = element.seat_No;
+    } else {
+      console.log(`seatNos: '${rowMessage.join(",")}',`);
+      console.log(`seatIds: '${seatMessage.join(",")}'`);
+
+      rowMessage = [element.row + '-' + element.seat_No];
+      seatMessage = [element.i_Id];
+      currentRow = element.row
+      lastSeat = element.seat_No;
+    }
+  });
+  console.log(`seatNos: ${rowMessage.join(",")},`);
+  console.log(`seatIds: ${seatMessage.join(",")}`);
+  await delay(10 * 1000)
+
 }
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-main()
-
+const h = async  () => {
+while(1) {
+ await main()
+}
+}
+h()
 module.exports = main;

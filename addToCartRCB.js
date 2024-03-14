@@ -5,9 +5,9 @@ const main = async (city = "chennai") => {
     eventGroupId: 2,
     eventId: 3,
     standId: 46,
-    qty: 2,
-    seatNos: 'F-3,F-4',
-    seatIds: '92026,92027'
+    qty: 4,
+    seatNos: 'E-12,E-13,E-14,E-15',
+    seatIds: '92017,92018,92019,92020'
   }
   
   const res = await fetch("https://shop.royalchallengers.com/api/checkout/ticketaddtocart", {
@@ -22,7 +22,7 @@ const main = async (city = "chennai") => {
       "sec-fetch-dest": "empty",
       "sec-fetch-mode": "cors",
       "sec-fetch-site": "same-origin",
-      "cookie": "__Host-next-auth.csrf-token=90b14ad7bf07d2950811ab557730b7353a68b9ee432d71f718c58daaccf5e96f%7C94c54bcae78082bc2956aa174e4aa9f0960117eb5e28b6065d01494d98630872; ext_name=ojplmecpdpgccookcobabopnaifgidhf; SESS1a41a2c578ea303956341aed00e8f9b8=qj-ReTcDBk2qPbKu54MHFf8eXMr0bm5f002HNY00zpQ%2C52AK; __Secure-next-auth.callback-url=https%3A%2F%2Fshop.royalchallengers.com%2Fpayzapp; __Secure-next-auth.session-token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..D_gkx8jem957WRED._cK6_wDNbham0YZPdLk3xQcgFvI5mzgcBzF_NoWfLtuO7fnl39Au6CRGai5DbSLKdx3HDUk2rvAAai4KvwihOvmFpmgMv3ZRN0eLAHjbyJxw1C5wP4b6CMVfAFYo1R9fMv3mWNzgrgzkqb3TnlKqTgb4OYzYNuYXFtncsUtYzCcsuBFBnO5hkKkCRXZZxT_2Sh7m2omXlNd2uYbGQ0YpUrKbj74mhrUxuqCtQYYhJmTCo2YsjvK0cdl_MsgRVwVgmu3j64IDhdS_BU6dEOSUqdV46e49b9x5cdzTyr8zPCTQoleyKLLvmM3w2t4DJ22tBJ8cIbPmkQyPCqNR2j6gYGOVcXla6oRXzfJVA9Pe652az11rpJqj_azgKOFMNi8S3TfitsSXqnfm6T-k2-S2Gz4ZMSkWpDa6NerDcqjS8YsAoc7G1hKoZ_qszBwbDo9jPbu02aXvnrzcKnB2Xk65QPeaMb_h-D0OrUHM0xgy_4GanX9MuJccPL3jsJifKOXZ4oT9B7idFxZy7KPXot-kR88.AQ9fkV363B02xU0xMhJE5g",
+      "cookie": "__Host-next-auth.csrf-token=90b14ad7bf07d2950811ab557730b7353a68b9ee432d71f718c58daaccf5e96f%7C94c54bcae78082bc2956aa174e4aa9f0960117eb5e28b6065d01494d98630872; ext_name=ojplmecpdpgccookcobabopnaifgidhf; SESS1a41a2c578ea303956341aed00e8f9b8=qj-ReTcDBk2qPbKu54MHFf8eXMr0bm5f002HNY00zpQ%2C52AK; __Secure-next-auth.callback-url=https%3A%2F%2Fshop.royalchallengers.com%2Fpayzapp; __Secure-next-auth.session-token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..dYDP_kiz5eTqxUte.6i3d-h9a8dY5BgCyE3olmYvQpZMReZjWqtChJ7LMAs6yZOAeOTZSaXiftN_s-2fObOA3YB6sRrHuo5LdBQx-kQFN1PGlHA_TnqMZwybH9D2OsMRoB77ZwlyOSqqMJU8lVZbcQMEXWfPTXfjeYIYKGne574RA5iRFqBLqmWc6dqFQdaxNGNJu4dhT834Z-zQDkCDm-4DJHyXbA9iUCKRTJSvFAcB9jb30Jig9JoiuwAQubW5Axznm7fOhHSOJKaI_dgE_9bcefhlL4eiP1N1qrgrFG8PVbg6QKnHgejSNtPXUD9sUC569TqUw_Pdt0tY1xJMIF5gGDDb3LOeUnFT2_K7opEFkN4mI0iglP-GYIBWo03MxxKv6TFd-E9ikIQMde5q2_WsGQIWYj2UohwhPgVAjQlFAN_TlUQ7Gmv2KlS10su0M-IF9vHlaafwJ_Ip6nn05FTKxgcnKtuf-_UfI_hqDjXs_8rWNbAMKlnZbsHMMfHjkvgzh7K823s9H-1zu7ZrpVm94kfp2_22XF7BowOo.9pkwdieQrnvKz2elflxYpA",
       "Referer": "https://shop.royalchallengers.com/ticket/3",
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },
