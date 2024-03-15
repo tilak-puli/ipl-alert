@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 
 const main = async () => {
-  const res = await fetch("https://shop.royalchallengers.com/api/ticket/seatlist/2/3/46", {
+  const res = await fetch("https://shop.royalchallengers.com/api/ticket/seatlist/2/3/48", {
     "headers": {
       "accept": "*/*",
       "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",

@@ -6,7 +6,7 @@ const main = async (city = "chennai") => {
     eventId: 3,
     standId: 46,
     qty: 4,
-    seatNos: 'E-12,E-13,E-14,E-15',
+    seatNos: 'X-45,X-46,E-14,E-15',
     seatIds: '92017,92018,92019,92020'
   }
   

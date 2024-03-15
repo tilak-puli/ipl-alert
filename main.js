@@ -1,6 +1,7 @@
 const paytmInsiderChecker = require("./paytmInsiderCheck");
 const rcbCheck = require("./rcbVsKkrStands");
 const cskCheck = require("./cskCheck");
+const cskCheck1 = require("./newCSKINsider");
 const notifier = require('node-notifier');
 var player = require('play-sound')(opts = {})
 const token = "7106716544:AAFwcwxZAYTO2iN8ldzn6AeVF5689cdrqK4";
@@ -10,27 +11,28 @@ const bot = new TelegramBot(token, { polling: false, });
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 const main = async () => {
     while (true) {
-        console.log(new Date().toLocaleString());
-        console.log("Checking  for rcb tickets")
-        const rcb = await rcbCheck();
-        console.log("Checking  for chennai in paytm insider")
-        let chennaiTickets = await paytmInsiderChecker("chennai");
-        chennaiTickets = chennaiTickets || (await cskCheck() === 1);
-        console.log("Checking  for bengalure in paytm insider")
-        const bangaloreTickets = await paytmInsiderChecker("bengaluru");
-        
+        try {
+            console.log(new Date().toLocaleString());
+            console.log("Checking  for rcb tickets")
+            // const rcb = await rcbCheck();
+            // console.log("Checking  for chennai in paytm insider")
+            let chennaiTickets = await paytmInsiderChecker("chennai");
+            chennaiTickets = chennaiTickets || (await cskCheck() === 1) || await cskCheck1();
 
-        if (rcb || chennaiTickets || bangaloreTickets) {
-            console.log("\x1b[32m", "Alert Tickets are released");
-            await notiify("Tickets released in paytm in " + (rcb ? "rcb": chennaiTickets ? "chennai" : "bengalure"));
-        } else {
-            console.log("\x1b[35m", "Tickets not released. sleeping");
+            if (chennaiTickets) {
+                console.log("\x1b[32m", "Alert Tickets are released");
+                await notiify("Tickets released in paytm in " + (chennaiTickets ? "chennai" : "bengalure"));
+            } else {
+                console.log("\x1b[35m", "Tickets not released. sleeping");
 
-            await delay(1 * 60 * 1000);
+                await delay(0.5 * 60 * 1000);
+            }
+        } catch (e) {
+            console.log(e)
+            await delay(0.5 * 60 * 1000);
         }
     }
 }
-
 
 const notiify = async (message) => {
     notifier.notify({
@@ -65,7 +67,7 @@ const notiify = async (message) => {
 //     bot.sendMessage(chatId, 'Received your message');
 // });
 
-const notifyOnTelegram  = (message) => {
+const notifyOnTelegram = (message) => {
     try {
         bot.sendMessage("446369918", message);
     } catch (err) {
